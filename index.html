@@ -50,10 +50,10 @@
         .cart-icon-container:hover i { color: var(--accent-pastel); }
         .cart-count { position: absolute; top: -10px; right: -10px; background: var(--accent-pastel); color: white; font-size: 11px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
-        /* HERO BÖLÜMÜ */
+        /* HERO BÖLÜMÜ (YENİLENEN ÇİFT SÜTUNLU YAPI) */
         .hero {
-            height: 75vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 0 20px; background-color: #e2e8f0;
+            min-height: 85vh; display: flex; align-items: center;
+            padding: 0 8%; background-color: #e2e8f0;
             background-image: 
                 linear-gradient(rgba(6, 182, 212, 0.15) 1.5px, transparent 1.5px),
                 linear-gradient(90deg, rgba(6, 182, 212, 0.15) 1.5px, transparent 1.5px);
@@ -63,16 +63,26 @@
         @keyframes patternMove { 0% { background-position: 0 0; } 100% { background-position: 50px 50px; } }
         .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(248,250,252,0.1) 0%, rgba(248,250,252,0.9) 85%); z-index: 1; }
         
-        .hero-content { 
-            position: relative; z-index: 2; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; text-align: center; max-width: 1200px; margin: 0 auto;
+        .hero-container {
+            position: relative; z-index: 2; display: grid; grid-template-columns: 1.2fr 1fr;
+            gap: 40px; align-items: center; width: 100%; max-width: 1400px; margin: 0 auto; padding: 40px 0;
         }
-        .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 25px; color: var(--text-main); line-height: 1.2; text-align: center; }
+        .hero-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+        .hero h1 { font-size: 44px; font-weight: 700; margin-bottom: 25px; color: var(--text-main); line-height: 1.2; }
         .hero h1 span { color: var(--accent-pastel); }
-        .hero p { font-size: 16px; color: var(--text-main); margin-bottom: 8px; line-height: 1.6; text-align: center; }
+        .hero p { font-size: 16px; color: var(--text-main); margin-bottom: 8px; line-height: 1.6; }
         .hero p.last-line { margin-bottom: 35px; font-weight: 500; }
         
-        .btn-group { display: flex; gap: 20px; justify-content: center; align-items: center; width: 100%; }
+        /* Yeni Eklenen Sağ Taraf Baskı Makinesi Görsel Alanı */
+        .hero-image-box { display: flex; justify-content: center; align-items: center; width: 100%; }
+        .hero-image-box img {
+            width: 100%; max-width: 580px; height: auto; object-fit: contain;
+            border-radius: 8px; filter: drop-shadow(0 20px 30px rgba(30, 41, 59, 0.12));
+            animation: floatImage 4s ease-in-out infinite;
+        }
+        @keyframes floatImage { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        .btn-group { display: flex; gap: 20px; justify-content: flex-start; align-items: center; width: 100%; }
         .hero-btn { width: 220px; height: 48px; display: inline-flex; align-items: center; justify-content: center; text-align: center; border-radius: 30px; font-weight: 600; font-size: 14px; text-decoration: none; transition: 0.3s; box-sizing: border-box; }
         .btn-primary { background: var(--text-main); color: #fff; }
         .btn-primary:hover { background: var(--accent-pastel); transform: translateY(-2px); }
@@ -226,6 +236,10 @@
 
         /* MOBİL UYUM */
         @media (max-width: 992px) { 
+            .hero-container { grid-template-columns: 1fr; text-align: center; padding: 20px 0; }
+            .hero-content { align-items: center; text-align: center; }
+            .btn-group { justify-content: center; }
+            .hero-image-box { margin-top: 20px; }
             .special-container, .about-container { grid-template-columns: 1fr; flex-direction: column; gap: 30px; } 
             .about-visual { height: 220px; } 
         }
@@ -242,9 +256,9 @@
             nav a { margin-left: 0; font-size: 18px; width: 100%; padding: 5px 0; } 
             .cart-icon-container { margin-left: 0; padding-top: 5px; }
             
-            .hero h1 { font-size: 26px; } 
+            .hero h1 { font-size: 28px; } 
             .hero p { font-size: 14px; }
-            .btn-group { flex-direction: column; gap: 10px; width: 100%; }
+            .btn-group { flex-direction: column; gap: 10px; width: 100%; align-items: center; }
             .hero-btn { width: 100%; max-width: 280px; }
             
             section { padding: 40px 5%; } 
@@ -279,13 +293,18 @@
     </header>
 
     <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Kurumsal Kimliğinizi <span>Yüksek Kaliteyle</span> Basıyoruz</h1>
-            <p>AKÇAY DİJİTAL olarak kartvizit, broşür, el ilanı ve afiş ihtiyaçlarınızı son teknoloji dijital baskı sistemlerimizle üretiyoruz.</p>
-            <p class="last-line">En uygun fiyatlarla, hızlı teslimat ve yüksek canlılıkta renk garantisi.</p>
-            <div class="btn-group">
-                <a href="#products" class="hero-btn btn-primary">Ürünleri İncele</a>
-                <a href="#special-request" class="hero-btn btn-red">Özel Ölçü Baskı Talebi</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Kurumsal Kimliğinizi <span>Yüksek Kaliteyle</span> Basıyoruz</h1>
+                <p>AKÇAY DİJİTAL olarak kartvizit, broşür, el ilanı ve afiş ihtiyaçlarınızı son teknoloji dijital baskı sistemlerimizle üretiyoruz.</p>
+                <p class="last-line">En uygun fiyatlarla, hızlı teslimat ve yüksek canlılıkta renk garantisi.</p>
+                <div class="btn-group">
+                    <a href="#products" class="hero-btn btn-primary">Ürünleri İncele</a>
+                    <a href="#special-request" class="hero-btn btn-red">Özel Ölçü Baskı Talebi</a>
+                </div>
+            </div>
+            <div class="hero-image-box">
+                <img src="image_c716e1.jpg" alt="Roland Profesyonel Dijital Baskı Makinesi">
             </div>
         </div>
     </section>
@@ -423,7 +442,6 @@
     </footer>
 
     <script>
-        // YENİ GOOGLE E-TABLO YAYIN BAĞLANTINIZ
         const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSekDJUCNi127R_HdKQjagV4si-JqW4Xv5ZN32hrNFnohdYb59pqtQ_AexcDFnGLs8QYfCJyzVmNkPg/pub?output=csv';
 
         let allProducts = [];
@@ -458,12 +476,10 @@
             const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
             if (lines.length <= 1) return [];
             
-            // Başlık satırını al ve temizle
             const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').toLowerCase().trim());
             const results = [];
             
             for (let i = 1; i < lines.length; i++) {
-                // CSV tırnak işaretlerini doğru ayırmak için regex kullanımı
                 const matches = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || lines[i].split(',');
                 if(!matches) continue;
                 const values = matches.map(v => v.replace(/^"|"$/g, '').trim());
@@ -471,7 +487,6 @@
                 
                 headers.forEach((header, index) => { entry[header] = values[index] || ''; });
                 
-                // Başlık eşleşmelerini kontrol edelim (title ve price zorunlu)
                 if (entry.title && entry.price) {
                     entry.unique_id = 'prod_' + i;
                     results.push(entry);
@@ -661,7 +676,7 @@
             htmlContent += `</div>`; 
             const kdvAmount = subTotal * 0.20; 
             const grandTotal = subTotal + kdvAmount; 
-            htmlContent += `<div class="cart-summary-wrapper"><div class="cart-summary-line"><span>Matbaa Toplam:</span><span>${subTotal.toLocaleString('tr-TR')} TL</span></div><div class="cart-summary-line"><span>KDV (%20):</span><span>${kdvAmount.toLocaleString('tr-TR')} TL</span></div><div style="width: 240px; border-top: 1px dashed var(--border-color); margin: 5px 0;"></div><div class="cart-summary-total"><span style="font-size: 13px; font-weight:600; color:var(--text-muted);">GENEL TOPLAM:</span><span>${grandTotal.toLocaleString('tr-TR')} TL</span></div></div>`;
+            htmlContent += `<div class="cart-summary-wrapper"><div class="cart-summary-line"><span>Matbaa Toplam:</span><span>${subTotal.toLocaleString('tr-TR')} TL</span></div><div class="cart-summary-line"><span>KDV (%20):</span><span>${kdvAmount.toLocaleString('tr-TR')} TL</span></div><div style="width: 240px; border-top: 1px dashed var(--border-color); margin: 5px 0;"></div><div class="cart-summary-total"><span style="font-size: 13px; font-weight:600; color:var(--text-muted);>GENEL TOPLAM:</span><span>${grandTotal.toLocaleString('tr-TR')} TL</span></div></div>`;
             whatsappMessageText += `\n-----------------------\n💰 *Ara Toplam:* ${subTotal.toLocaleString('tr-TR')} TL\n🌾 *KDV (%20):* ${kdvAmount.toLocaleString('tr-TR')} TL\n🧮 *GENEL TOPLAM:* ${grandTotal.toLocaleString('tr-TR')} TL\n\nTasarım dosyalarımı iletmek ve baskıyı onaylamak istiyorum.`;
             
             htmlContent += `
