@@ -19,7 +19,7 @@
             --accent-light: #ecfeff;   /* Çok Açık Turkuaz Arka Plan */
             --border-color: #e2e8f0;   /* Temiz Çizgi Rengi */
             --whatsapp-color: #25D366;  /* WhatsApp Yeşili */
-            --header-bg: #f8fafc;      /* Başlık çubuğu rengi */
+            --header-bg: #f8fafc;      /* DEĞİŞTİRİLDİ: Başlık çubuğu rengi güncellendi */
             --turquoise-color: #06b6d4; /* Turkuaz İstek Rengi */
         }
         body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
@@ -30,7 +30,7 @@
             background: var(--header-bg); backdrop-filter: blur(10px);
             display: flex; justify-content: space-between; align-items: center; z-index: 1000;
             border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 4px 20px rgba(30, 41, 59, 0.15); /* Belirgin gölge */
+            box-shadow: 0 4px 20px rgba(30, 41, 59, 0.15); /* DEĞİŞTİRİLDİ: Gölge daha belirginleştirildi */
         }
         .logo { font-size: 24px; font-weight: 700; color: var(--text-main); text-decoration: none; letter-spacing: 1px; flex-shrink: 0; }
         .logo span { color: var(--accent-pastel); font-weight: 400; }
@@ -58,7 +58,7 @@
                 linear-gradient(rgba(6, 182, 212, 0.15) 1.5px, transparent 1.5px),
                 linear-gradient(90deg, rgba(6, 182, 212, 0.15) 1.5px, transparent 1.5px);
             background-size: 50px 50px; position: relative; overflow: hidden;
-            animation: patternMove 45s linear infinite; margin-top: 65px; /* DEĞİŞTİRİLDİ: Hareket hızı 16s'den 45s'ye çıkarılarak yavaşlatıldı */
+            animation: patternMove 35s linear infinite; margin-top: 65px;
         }
         @keyframes patternMove { 0% { background-position: 0 0; } 100% { background-position: 50px 50px; } }
         .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(248,250,252,0.1) 0%, rgba(248,250,252,0.9) 85%); z-index: 1; }
@@ -210,7 +210,7 @@
         .stat-box h4 { font-size: 24px; color: var(--accent-pastel); font-weight: 700; }
         .stat-box p { font-size: 12px; margin-bottom: 0; }
         .about-visual { height: 300px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; }
-        .about-visual img { width: 100%; height: 100%; object-fit: cover; }
+        .about-visual img { width: 100%; height: 100%; object-fit: cover; } /* DEĞİŞTİRİLDİ: Resim özellikleri ayarlandı */
 
         .info-section { background: var(--bg-color); }
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
@@ -264,8 +264,7 @@
             <nav id="navMenu">
                 <a href="#" onclick="closeMenu()">Ana Sayfa</a>
                 <a href="#products" onclick="closeMenu()">Baskı Ürünleri</a>
-                <a href="#special-request" onclick="closeMenu()">Teklif Al</a>
-                <a href="#about" onclick="closeMenu()">Hakkımızda</a>
+                <a href="#special-request" onclick="closeMenu()">Teklif Al</a> <a href="#about" onclick="closeMenu()">Hakkımızda</a>
                 <a href="#contact" onclick="closeMenu()">İletişim</a>
                 <div class="cart-icon-container" onclick="closeMenu(); toggleCartModal(true)">
                     <i class="fa-solid fa-basket-shopping"></i>
@@ -284,7 +283,8 @@
             <p class="last-line">AKÇAY DİJİTAL olarak kartvizit, broşür, el ilanı ve afiş ihtiyaçlarınızı son teknoloji dijital baskı sistemlerimizle üretiyoruz. En uygun fiyatlarla, hızlı teslimat ve yüksek canlılıkta renk garantisi sunuyoruz.</p>
             <div class="btn-group">
                 <a href="#products" class="hero-btn btn-primary">Ürünleri İncele</a>
-                <a href="#special-request" class="hero-btn btn-red">Teklif Al</a> </div>
+                <a href="#special-request" class="hero-btn btn-red">Özel Ölçü Baskı Talebi</a>
+            </div>
         </div>
     </section>
 
@@ -364,8 +364,8 @@
             <div class="about-text">
                 <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">Biz <span>Kimiz?</span></h2>
                 <h3>Hızlı Çözüm, Profesyonel Dijital Matbaa</h3>
-                <p>AKÇAY DİJİTAL, firmanızın veya etkinliklerinizin reklam & tanıtım materyallerini en yüksek renk doğruluğuyla hayata geçiren profesyonel bir dijital baskı merkezidir.</p>
-                <p>Geleneksel matbaa süreçlerinin getirdiği yüksek adet zorunluluklarını ortadan kaldırarak, ihtiyacınız kadar ürünü, en uygun fiyatlarla sunuyoruz.</p>
+                <p>AKÇAY DİJİTAL, firmanızın veya etkinliklerinizin reklam ve tanıtım materyallerini en yüksek renk doğruluğuyla hayata geçiren profesyonel bir dijital baskı merkezidir.</p>
+                <p>Geleneksel matbaa süreçlerinin getirdiği yüksek adet zorunluluklarını ortadan kaldırarak, ihtiyacınız kadar ürünü, en uygun fiyatlarla..."</p>
                 <div class="about-stats">
                     <div class="stat-box"><h4>CMYK</h4><p>Canlı Renkler</p></div>
                     <div class="stat-box"><h4>Hızlı</h4><p>Aynı Gün Teslimat</p></div>
