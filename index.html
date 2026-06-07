@@ -19,7 +19,7 @@
             --accent-light: #ecfeff;   /* Çok Açık Turkuaz Arka Plan */
             --border-color: #e2e8f0;   /* Temiz Çizgi Rengi */
             --whatsapp-color: #25D366;  /* WhatsApp Yeşili */
-            --header-bg: #f1f5f9;      /* Sayfayla Uyumlu Üst Çubuk */
+            --header-bg: #ffffff;      /* Sayfayla Uyumlu Üst Çubuk */
             --turquoise-color: #06b6d4; /* Turkuaz İstek Rengi */
         }
         body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
@@ -565,27 +565,33 @@
         }
 
         function parseCSV(text) {
-            const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
-            if (lines.length <= 1) return [];
+        const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+        if (lines.length <= 1) return [];
+        
+        // Başlıkları al
+        const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').toLowerCase().trim());
+        const results = [];
+        
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i];
+            // Tırnak işaretlerini dikkate alarak ayırma yapan regex
+            const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
             
-            const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').toLowerCase().trim());
-            const results = [];
-            
-            for (let i = 1; i < lines.length; i++) {
-                const matches = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || lines[i].split(',');
-                if(!matches) continue;
-                const values = matches.map(v => v.replace(/^"|"$/g, '').trim());
+            if (values) {
                 const entry = {};
-                
-                headers.forEach((header, index) => { entry[header] = values[index] || ''; });
+                headers.forEach((header, index) => { 
+                    let val = (values[index] || '').replace(/^"|"$/g, '').trim();
+                    entry[header] = val; 
+                });
                 
                 if (entry.title && entry.price) {
                     entry.unique_id = 'prod_' + i;
                     results.push(entry);
                 }
             }
-            return results;
         }
+        return results;
+    }
 
         function renderProducts(products) {
             const gridElement = document.getElementById('dynamicProductsGrid');
@@ -773,9 +779,9 @@
             
             htmlContent += `
                 <div class="cart-action-btn-group">
-                    <a class="continue-shopping-link" onclick="toggleCartModal(false)"><i class="fa-solid fa-chevron-left"></i> Alışverişe Devam Et</a>
-                    <a href="https://wa.me/905326180952?text=${encodeURIComponent(whatsappMessageText)}" target="_blank" class="cart-submit-red-btn">SİPARİŞİ ONAYLA <i class="fa-brands fa-whatsapp" style="font-size:16px;"></i></a>
-                </div>
+            <a class="continue-shopping-link" onclick="toggleCartModal(false)"><i class="fa-solid fa-chevron-left"></i> Alışverişe Devam Et</a>
+            <a href="https://wa.me/905326180952?text=${encodeURIComponent(whatsappMessageText)}" target="_blank" class="cart-submit-red-btn">İLETİŞİME GEÇ <i class="fa-brands fa-whatsapp" style="font-size:16px;"></i></a>
+        </div>
             `;
             container.innerHTML = htmlContent;
         }
